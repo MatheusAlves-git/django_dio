@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        h1{
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, 0%);
+        }
+        .div1{
+            position: absolute;
+            left: 50%;
+            top: 25%;
+            transform: translate(-50%, 0%);
+        }
+
+        .div2{
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, 0%);
+        }
+
+        button{
+            position: absolute;
+            left: 50%;
+            top: 35%;
+            transform: translate(-50%, 0%);
+        }
+
+        .mensagem{
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, 0%);
+        }
+    </style>
+</head>
+<body>
+    <h1>login</h1>
+    <form action="submit" method="POST"> {% csrf_token %}
+        <div class="div1">
+            <label>Usuário</label><input type="text" name="username">
+        </div>
+        <div class="div2">
+            <label>Password</label><input type="password" name="password">
+        </div>
+        <button type="submit"> Entrar </button>
+    </form>
+    <form class="mensagem">
+        {% for message in messages %}
+            <strong>Erro </strong>{{message}}
+        {% endfor %}
+    </form>
+</body>
+</html>
