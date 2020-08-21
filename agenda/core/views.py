@@ -54,7 +54,10 @@ def submit_evento(request):
         descricao = request.POST.get('descricao')
         local = request.POST.get('local')
         usuario = request.user
-        id_evento = request.POST.get('id_evento')
+        try:
+            id_evento = request.POST.get('id_evento')
+        except Exception:
+            raise Http404()
         if id_evento:
             evento = Evento.objects.get(id=id_evento)
             if evento.usuario == usuario:
@@ -94,7 +97,10 @@ def delete_evento(request, id_evento):
 
 @login_required(login_url='/login/')
 def json_lista_evento(request):
-    usuario = request.user
+    try:
+        usuario = request.user
+    except Exception:
+        raise Http404()
     evento = Evento.objects.filter(usuario=usuario).values('id', 'titulo')
     return JsonResponse(list(evento), safe=False)
 
