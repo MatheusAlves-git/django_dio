@@ -32,7 +32,7 @@ def logout_user(request):
 def lista_eventos(request):
     usuario = request.user
     data_atual = datetime.now() - timedelta(hours=1)
-    evento = Evento.objects.filter(usuario=usuario, data_evento__gt=data_atual)
+    evento = Evento.objects.filter(usuario=usuario) # , data_evento__gt=data_atual
     dados = {'eventos':evento}
     return render(request, 'agenda.html', dados)
 
